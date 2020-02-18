@@ -128,6 +128,15 @@ If you're unfamiliar with Git, you may find [this](https://realpython.com/python
 2. Commit your changes (`git commit -am 'Add some fooBar'`)
 3. Push to the branch (`git push origin feature/fooBar`)
 4. Create a new [Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)
+6. Once a Pull Request is initiated, Github Actions will run tests. This is part of continuous integration. To view
+the status of the tests:
+    1. Go to [actions](https://github.com/AceTeamCSC/sudoku/actions)
+    2. then click the first event to see the newest run
+    3. Then, in the left corner, click build to get details.
+    
+    ![continuous integration](https://dan.yeaw.me/images/continuous-integration.svg)
+    ![actons](https://github.com/AceTeamCSC/sudoku/docs/actions.png)
+
 
 
 ## Documentation
