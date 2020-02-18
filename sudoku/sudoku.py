@@ -42,4 +42,3 @@ def foo(param1: str) -> str:
 
     """
     return param1
-

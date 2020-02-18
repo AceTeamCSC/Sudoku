@@ -133,7 +133,7 @@ the status of the tests:
     1. Go to [actions](https://github.com/AceTeamCSC/sudoku/actions)
     2. then click the first event to see the newest run
     3. Then, in the left corner, click build to get details.
-    
+
     ![continuous integration](https://dan.yeaw.me/images/continuous-integration.svg)
     ![actons](https://github.com/AceTeamCSC/sudoku/docs/actions.png)
 
