@@ -135,7 +135,7 @@ the status of the tests:
     3. Then, in the left corner, click build to get details.
 
     ![continuous integration](https://dan.yeaw.me/images/continuous-integration.svg)
-    ![actons](https://github.com/AceTeamCSC/sudoku/docs/actions.png)
+    ![actons](https://github.com/AceTeamCSC/sudoku/tree/master/docs/actions.png)
 
 
 
