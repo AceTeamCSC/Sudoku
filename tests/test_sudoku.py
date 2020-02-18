@@ -11,4 +11,4 @@ def test_foo():
 
     """
     # More on pytest: https://github.com/pluralsight/intro-to-pytest  #noqa
-    assert sudoku.foo("hi") == "hi"
+    assert sudoku.foo("hi") == "hdi"
