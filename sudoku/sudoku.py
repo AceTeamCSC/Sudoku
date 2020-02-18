@@ -41,4 +41,5 @@ def foo(param1: str) -> str:
         The return value.
 
     """
+    # bad test
     return param1
