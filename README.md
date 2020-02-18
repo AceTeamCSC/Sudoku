@@ -1,7 +1,7 @@
 # Sudoku
 > Short blurb about what your product does.
 
-
+Add an image
 One to two paragraph statement about your product and what it does.
 
 ## Installation
