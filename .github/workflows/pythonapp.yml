@@ -36,11 +36,3 @@ jobs:
         pytest
     - name: pre-commit
       uses: pre-commit/action@v1.0.1
-
-    - name: Code Climate Coverage Action
-      uses: paambaati/codeclimate-action@v2.3.0
-      if: matrix.py_ver == '3.7'
-      env:
-        CC_TEST_REPORTER_ID: 8f6ebf829bd7be944b7e16988238ead24ac15f727ceb5a80602bfe8577f4d091
-      with:
-        coverageCommand: coverage xml
