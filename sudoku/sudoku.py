@@ -42,3 +42,19 @@ def foo(param1: str) -> str:
 
     """
     return param1
+
+
+def new_func():
+    my_string = "Hello, World!"
+    print(my_string)
+    my_string = "Hello, World!"
+    print(my_string)
+    my_string = "Hello, World!"
+    print(my_string)
+    my_string = "Hello, World!"
+    print(my_string)
+    my_string = "Hello, World!"
+    print(my_string)
+    my_string = "Hello, World!"
+    print(my_string)
+    return False
