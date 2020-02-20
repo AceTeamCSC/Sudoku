@@ -29,7 +29,8 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=80 --statistics
         # Check Black code style compliance
         # black ./ --skip-string-normalization --check
-        python -m black --skip-string-normalization --check .
+        # python -m black --skip-string-normalization --check .
+        python -m black --check .
 
     - name: Test with pytest
       run: |
