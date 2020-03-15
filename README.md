@@ -1,7 +1,7 @@
 # Sudoku
 > Short blurb about what your product does.
 
-
+Add an image
 One to two paragraph statement about your product and what it does.
 
 ## Installation
@@ -135,7 +135,7 @@ the status of the tests:
     3. Then, in the left corner, click build to get details.
 
     ![continuous integration](https://dan.yeaw.me/images/continuous-integration.svg)
-    ![actons](https://github.com/AceTeamCSC/sudoku/docs/actions.png)
+    ![actions](docs/actions.png)
 
 
 
