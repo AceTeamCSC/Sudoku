@@ -32,12 +32,3 @@ repos:
     hooks:
     -   id: blacken-docs
         additional_dependencies: [black==19.3b0]
-
--   repo: local
-    hooks:
-    -   id: tests
-        name: run tests
-        entry: pytest -v
-        language: system
-        types: [python]
-        stages: [push]
