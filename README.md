@@ -87,9 +87,9 @@ config files assume the virtual environment is named 've'.
     git.
     2. The pre-commit config file also has a linter, flake8, to analyze code for potential errors and standard Python
     coding style practices.
-    3. Since black, trailing-whitespace, end-of-file-fixer, and debug-statements are in the .pre-commit-config file,
-    it will make file changes for you. If it makes changes, the status will say Failed, but if you run it again it'll
-    show Passed since the violations were corrected in the previous run.
+    3. There are some hooks in  .pre-commit-config file, that will make file changes for you. If it makes changes,
+    the status will say Failed, but if you run it again it'll show Passed since the violations were corrected in the
+    previous run.
         1. Example successful run:
 ```
 (ve) ^_^[USER:~/Desktop/sudoku]  (master)~/Desktop/sudoku
