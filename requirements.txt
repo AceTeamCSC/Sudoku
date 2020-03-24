@@ -47,6 +47,7 @@ Pygments==2.5.2
 pyparsing==2.4.6
 pytest==5.3.5
 pytest-black==0.3.8
+pytest-cov==2.8.1
 pytest-flake8==1.0.4
 pytest-mock==2.0.0
 pytz==2019.3
