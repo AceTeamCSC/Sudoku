@@ -150,40 +150,6 @@ for collaboration.
     blacken-docs.............................................................Passed
     ```
 
-   Example Unsuccessful Github run as seen in the Github 'checks' tab:
-    ```
-   pre-commit53s
-    [INFO] This may take a few minutes...
-    Run pre-commit/action@v1.0.1
-    install pre-commit
-    C:\hostedtoolcache\windows\Python\3.7.6\x64\Scripts\pre-commit.exe run --all-files --show-diff-on-failure --color=always
-    [INFO] Initializing environment for https://github.com/asottile/seed-isort-config.
-    [INFO] Initializing environment for https://github.com/ambv/black.
-    [INFO] Initializing environment for https://github.com/pre-commit/pre-commit-hooks.
-    [INFO] Initializing environment for https://github.com/pre-commit/pre-commit-hooks:darglint,flake8-docstrings.
-    [INFO] Initializing environment for https://github.com/pre-commit/mirrors-autopep8.
-    [INFO] Initializing environment for https://github.com/asottile/blacken-docs.
-    [INFO] Initializing environment for https://github.com/asottile/blacken-docs:black==19.3b0.
-    [INFO] Installing environment for https://github.com/asottile/seed-isort-config.
-    [INFO] Once installed this environment will be reused.
-    [INFO] This may take a few minutes...
-    [INFO] Installing environment for https://github.com/ambv/black.
-    [INFO] Once installed this environment will be reused.
-    [INFO] This may take a few minutes...
-    [INFO] Installing environment for https://github.com/pre-commit/pre-commit-hooks.
-    [INFO] Once installed this environment will be reused.
-    [INFO] This may take a few minutes...
-    [INFO] Installing environment for https://github.com/pre-commit/pre-commit-hooks.
-    [INFO] Once installed this environment will be reused.
-    [INFO] This may take a few minutes...
-    [INFO] Installing environment for https://github.com/pre-commit/mirrors-autopep8.
-    [INFO] Once installed this environment will be reused.
-    [INFO] This may take a few minutes...
-    [INFO] Installing environment for https://github.com/asottile/blacken-docs.
-    [INFO] Once installed this environment will be reused.
-    [INFO] This may take a few minutes...
-    ```
-
 ## Release History
 
 * 0.1.0
