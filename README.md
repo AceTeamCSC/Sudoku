@@ -58,22 +58,29 @@ for collaboration.
     is in /tests and the examples will be using [PyTest](https://docs.pytest.org/en/latest/getting-started.html). A standard
     practice that goes with testing is calculating code coverage. Code coverage is the percentage of source code that is
     “covered” by your tests. If the code coverage falls below 70%, the Github check will fail. Before doing a pull request, the
-    coverage can be checked by running pytest.
+    coverage can be checked by running pytest ```pytest --verbose --cov-branch --cov-fail-under=50 --color=yes --cov=sudoku```
 
      Example successful run from command line on your local machine:
-      ```
-    $ coverage run -m pytest --verbose
+    ```
+       $ pytest --verbose --cov-branch --cov-fail-under=50 --color=yes --cov=sudoku
     ================================================================================ test session starts =================================================================================
-    platform darwin -- Python 3.7.6, pytest-5.3.5, py-1.8.1, pluggy-0.13.1 -- /Users/paigelo/Desktop/sudoku/ve/bin/python3
+    platform darwin -- Python 3.7.6, pytest-5.4.1, py-1.8.1, pluggy-0.13.1 -- /Users/paigelo/Desktop/sudoku/ve/bin/python3
     cachedir: .pytest_cache
     rootdir: /Users/paigelo/Desktop/sudoku, inifile: setup.cfg, testpaths: tests
-    plugins: mock-2.0.0, black-0.3.8, flake8-1.0.4, xdoctest-0.11.0
+    plugins: mock-2.0.0, black-0.3.8, flake8-1.0.4, cov-2.8.1
     collected 1 item
 
     tests/test_sudoku.py::test_foo PASSED                                                                                                                                          [100%]
 
-    ================================================================================= 1 passed in 0.03s ==================================================================================
-    ```
+    ---------- coverage: platform darwin, python 3.7.6-final-0 -----------
+    Name               Stmts   Miss Branch BrPart  Cover   Missing
+    --------------------------------------------------------------
+    sudoku/sudoku.py       5      1      2      1    71%   45, 44->45
+
+    Required test coverage of 50% reached. Total coverage: 71.43%
+
+    ================================================================================= 1 passed in 0.04s ==================================================================================
+       ```
 
     Example Unsuccessful Github run as seen in the 'checks' tab:
    ```
