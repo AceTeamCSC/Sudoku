@@ -50,33 +50,20 @@ config files assume the virtual environment is named 've'.
     1. A unit test is designed to check a single function or unit of code. The code for the unit tests
     is in /tests and we'll be using [PyTest](https://docs.pytest.org/en/latest/getting-started.html). A standard
     practice that goes with testing is calculating code coverage. Code coverage is the percentage of source code that is
-    “covered” by your tests. pytest-cov is used to calculate the code coverage. If the code coverage falls below 50%,
-    the tests will not pass and you will get a message like: ```FAIL Required test coverage of 50% not reached. Total
-    coverage: 46.67%```
+    “covered” by your tests. If the code coverage falls below 70%, the Github push to the master branch will fail.
         1. Example successful run:
       ```
-    (ve) ^_^[USER:~/Desktop/sudoku]  (master)~/Desktop/sudoku
-    $ pytest
-    =================================================================== test session starts ====================================================================
-    platform darwin -- Python 3.7.6, pytest-5.3.5, py-1.8.1, pluggy-0.13.1 -- /Users/USER/Desktop/sudoku/ve/bin/python3
+    $ coverage run -m pytest --verbose
+    ================================================================================ test session starts =================================================================================
+    platform darwin -- Python 3.7.6, pytest-5.3.5, py-1.8.1, pluggy-0.13.1 -- /Users/paigelo/Desktop/sudoku/ve/bin/python3
     cachedir: .pytest_cache
-    rootdir: /Users/USER/Desktop/sudoku, inifile: setup.cfg
-    plugins: mock-2.0.0, xdoctest-0.11.0, cov-2.8.1
-    collected 1 item
-
-    tests/test_sudoku.py::test_foo PASSED                                                                                                                [100%]
-
-    ---------- coverage: platform darwin, python 3.7.6-final-0 -----------
-    Name                 Stmts   Miss Branch BrPart  Cover   Missing
-    ----------------------------------------------------------------
-    sudoku/__init__.py       0      0      0      0   100%
-    sudoku/sudoku.py         3      0      0      0   100%
-    ----------------------------------------------------------------
-    TOTAL                    3      0      0      0   100%
-
-    Required test coverage of 50% reached. Total coverage: 100.00%
-
-    ==================================================================== 1 passed in 0.06s =====================================================================
+    rootdir: /Users/paigelo/Desktop/sudoku, inifile: setup.cfg, testpaths: tests
+    plugins: mock-2.0.0, black-0.3.8, flake8-1.0.4, xdoctest-0.11.0
+    collected 1 item                                                                                                                                                                     
+    
+    tests/test_sudoku.py::test_foo PASSED                                                                                                                                          [100%]
+    
+    ================================================================================= 1 passed in 0.03s ==================================================================================
     ```
 
 2. ```pre-commit run --all-files``` in the /sudoku directory
@@ -87,20 +74,24 @@ config files assume the virtual environment is named 've'.
     git.
     2. The pre-commit config file also has a linter, flake8, to analyze code for potential errors and standard Python
     coding style practices.
-    3. There are some hooks in  .pre-commit-config file, that will make file changes for you. If it makes changes,
+    3. There are some hooks in .pre-commit-config file, that will make file changes for you. If it makes changes,
     the status will say Failed, but if you run it again it'll show Passed since the violations were corrected in the
     previous run.
         1. Example successful run:
-```
-(ve) ^_^[USER:~/Desktop/sudoku]  (master)~/Desktop/sudoku
-$ pre-commit run --all-files
-seed isort known_third_party.............................................Passed
-black....................................................................Passed
-Flake8...................................................................Passed
-Trim Trailing Whitespace.................................................Passed
-Fix End of Files.........................................................Passed
-Debug Statements (Python)................................................Passed
-```
+    ```
+    $ pre-commit run --all-files
+    seed isort known_third_party.............................................Passed
+    black....................................................................Passed
+    Flake8...................................................................Passed
+    Trim Trailing Whitespace.................................................Passed
+    Fix End of Files.........................................................Passed
+    Debug Statements (Python)................................................Passed
+    Check docstring is first.................................................Passed
+    Fix requirements.txt.....................................................Passed
+    Check Yaml...............................................................Passed
+    autopep8.................................................................Passed
+    blacken-docs.............................................................Passed
+    ```
 
 
 ## Release History
