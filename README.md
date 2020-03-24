@@ -150,7 +150,7 @@ for collaboration.
     blacken-docs.............................................................Passed
     ```
 
-   Example Unsuccessful Github run as seen in the 'checks' tab:
+   Example Unsuccessful Github run as seen in the Github 'checks' tab:
     ```
    pre-commit53s
     [INFO] This may take a few minutes...
