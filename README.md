@@ -82,33 +82,35 @@ for collaboration.
     ================================================================================= 1 passed in 0.04s ==================================================================================
        ```
 
-    Example Unsuccessful Github run as seen in the 'checks' tab:
-   ```
-     Test with pytest2s
-    ##[error]Process completed with exit code 1.
-    Run pytest --verbose --cov-branch --cov-fail-under=90 --color=yes --cov=sudoku
-    ============================= test session starts =============================
-    platform win32 -- Python 3.7.6, pytest-5.3.5, py-1.8.1, pluggy-0.13.1 -- c:\hostedtoolcache\windows\python\3.7.6\x64\python.exe
-    cachedir: .pytest_cache
-    rootdir: D:\a\sudoku\sudoku, inifile: setup.cfg, testpaths: tests
-    plugins: black-0.3.8, cov-2.8.1, flake8-1.0.4, mock-2.0.0, xdoctest-0.11.0
-    collecting ... collected 1 item
+  Example unsuccessful Github run as seen in the 'checks' tab in the pull request. Note the coverage is set to 90% in
+  this example, but the Sudoku code requirement is set to 70%:
 
-    tests/test_sudoku.py::test_foo PASSED                                    [100%]
+        ```
+        ##[error]Process completed with exit code 1.
+        Run pytest --verbose --cov-branch --cov-fail-under=90 --color=yes --cov=sudoku
+        ============================= test session starts =============================
+        platform win32 -- Python 3.7.6, pytest-5.3.5, py-1.8.1, pluggy-0.13.1 -- c:\hostedtoolcache\windows\python\3.7.6\x64\python.exe
+        cachedir: .pytest_cache
+        rootdir: D:\a\sudoku\sudoku, inifile: setup.cfg, testpaths: tests
+        plugins: black-0.3.8, cov-2.8.1, flake8-1.0.4, mock-2.0.0, xdoctest-0.11.0
+        collecting ... collected 1 item
 
-    ----------- coverage: platform win32, python 3.7.6-final-0 -----------
-    Name               Stmts   Miss Branch BrPart  Cover   Missing
-    --------------------------------------------------------------
-    sudoku\sudoku.py       5      1      2      1    71%   45, 44->45
+        tests/test_sudoku.py::test_foo PASSED                                    [100%]
 
-    FAIL Required test coverage of 90% not reached. Total coverage: 71.43%
+        ----------- coverage: platform win32, python 3.7.6-final-0 -----------
+        Name               Stmts   Miss Branch BrPart  Cover   Missing
+        --------------------------------------------------------------
+        sudoku\sudoku.py       5      1      2      1    71%   45, 44->45
 
-    ============================== 1 passed in 0.05s ==============================
-    ##[error]Process completed with exit code 1.
-    ```
+        FAIL Required test coverage of 90% not reached. Total coverage: 71.43%
+
+        ============================== 1 passed in 0.05s ==============================
+        ##[error]Process completed with exit code 1.
+        ```
 
 
-2. ```pre-commit run --all-files``` in the /sudoku directory
+
+2.  ```pre-commit run --all-files``` in the /sudoku directory
     1. pre-commit is a Python package that allows you to create a .pre-commit-config.yaml file that maintains a list of
     tools to run before each commit. Note: pre-commit requires git.
     2. The pre-commit config file also has a linter, flake8, to analyze code for potential errors and standard Python
@@ -116,7 +118,7 @@ for collaboration.
     the status will say Failed, but if you run it again it'll show Passed since the violations were corrected in the
     previous run.
 
-    Example unsuccessful run from command line on a local machine:
+    Example unsuccessful run from command line on your local machine:
     ```
     $ pre-commit run --all-files
     seed isort known_third_party.............................................Passed
@@ -141,7 +143,7 @@ for collaboration.
 
     Example successful run from command line on your local machine:
     The whitespace issues were fixed when running the initial pre-commit coommand and are therefore no longer showing
-    as failed in the second run of pre-commit:
+    as Failed in the second run of pre-commit:
     ```
     $ pre-commit run --all-files
     seed isort known_third_party.............................................Passed
