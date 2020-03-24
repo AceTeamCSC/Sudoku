@@ -41,4 +41,6 @@ def foo(param1: str) -> str:
         The return value.
 
     """
+    if 1 == 0:
+        print("stuff")
     return param1

@@ -16,7 +16,8 @@ edit autoexec.bat
 
 ## Usage example
 
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially
+more screenshots.
 
 _For more examples and usage, please refer to the [Wiki][wiki]._
 
@@ -45,63 +46,109 @@ config files assume the virtual environment is named 've'.
 6. Inside the /sudoku directory cloned from Github
 ```pip install -r requirements.txt``` to install all the packages required for development on this project
 
+## Continuous Integration
+This Sudoku project utilizes [continuous integration](https://hackaday.com/2020/01/06/continuous-integration-what-it-is-and-why-you-need-it/)
+for collaboration.
+
+   ![continuous integration](https://dan.yeaw.me/images/continuous-integration.svg)
+
 ### Before the Pull Request
 1. Run ```pytest``` in the /sudoku directory
     1. A unit test is designed to check a single function or unit of code. The code for the unit tests
-    is in /tests and we'll be using [PyTest](https://docs.pytest.org/en/latest/getting-started.html). A standard
+    is in /tests and the examples will be using [PyTest](https://docs.pytest.org/en/latest/getting-started.html). A standard
     practice that goes with testing is calculating code coverage. Code coverage is the percentage of source code that is
-    “covered” by your tests. pytest-cov is used to calculate the code coverage. If the code coverage falls below 50%,
-    the tests will not pass and you will get a message like: ```FAIL Required test coverage of 50% not reached. Total
-    coverage: 46.67%```
-        1. Example successful run:
+    “covered” by your tests. If the code coverage falls below 70%, the Github check will fail. Before doing a pull request, the
+    coverage can be checked by running pytest.
+
+     Example successful run from command line on your local machine:
       ```
-    (ve) ^_^[USER:~/Desktop/sudoku]  (master)~/Desktop/sudoku
-    $ pytest
-    =================================================================== test session starts ====================================================================
-    platform darwin -- Python 3.7.6, pytest-5.3.5, py-1.8.1, pluggy-0.13.1 -- /Users/USER/Desktop/sudoku/ve/bin/python3
+    $ coverage run -m pytest --verbose
+    ================================================================================ test session starts =================================================================================
+    platform darwin -- Python 3.7.6, pytest-5.3.5, py-1.8.1, pluggy-0.13.1 -- /Users/paigelo/Desktop/sudoku/ve/bin/python3
     cachedir: .pytest_cache
-    rootdir: /Users/USER/Desktop/sudoku, inifile: setup.cfg
-    plugins: mock-2.0.0, xdoctest-0.11.0, cov-2.8.1
+    rootdir: /Users/paigelo/Desktop/sudoku, inifile: setup.cfg, testpaths: tests
+    plugins: mock-2.0.0, black-0.3.8, flake8-1.0.4, xdoctest-0.11.0
     collected 1 item
 
-    tests/test_sudoku.py::test_foo PASSED                                                                                                                [100%]
+    tests/test_sudoku.py::test_foo PASSED                                                                                                                                          [100%]
 
-    ---------- coverage: platform darwin, python 3.7.6-final-0 -----------
-    Name                 Stmts   Miss Branch BrPart  Cover   Missing
-    ----------------------------------------------------------------
-    sudoku/__init__.py       0      0      0      0   100%
-    sudoku/sudoku.py         3      0      0      0   100%
-    ----------------------------------------------------------------
-    TOTAL                    3      0      0      0   100%
-
-    Required test coverage of 50% reached. Total coverage: 100.00%
-
-    ==================================================================== 1 passed in 0.06s =====================================================================
+    ================================================================================= 1 passed in 0.03s ==================================================================================
     ```
+
+    Example Unsuccessful Github run as seen in the 'checks' tab:
+   ```
+     Test with pytest2s
+    ##[error]Process completed with exit code 1.
+    Run pytest --verbose --cov-branch --cov-fail-under=90 --color=yes --cov=sudoku
+    ============================= test session starts =============================
+    platform win32 -- Python 3.7.6, pytest-5.3.5, py-1.8.1, pluggy-0.13.1 -- c:\hostedtoolcache\windows\python\3.7.6\x64\python.exe
+    cachedir: .pytest_cache
+    rootdir: D:\a\sudoku\sudoku, inifile: setup.cfg, testpaths: tests
+    plugins: black-0.3.8, cov-2.8.1, flake8-1.0.4, mock-2.0.0, xdoctest-0.11.0
+    collecting ... collected 1 item
+
+    tests/test_sudoku.py::test_foo PASSED                                    [100%]
+
+    ----------- coverage: platform win32, python 3.7.6-final-0 -----------
+    Name               Stmts   Miss Branch BrPart  Cover   Missing
+    --------------------------------------------------------------
+    sudoku\sudoku.py       5      1      2      1    71%   45, 44->45
+
+    FAIL Required test coverage of 90% not reached. Total coverage: 71.43%
+
+    ============================== 1 passed in 0.05s ==============================
+    ##[error]Process completed with exit code 1.
+    ```
+
 
 2. ```pre-commit run --all-files``` in the /sudoku directory
     1. pre-commit is a Python package that allows you to create a .pre-commit-config.yaml file that maintains a list of
-    tools to run before each commit. By passing ```--all-files``` you are checking all files in the repo, without
-    passing this  argument, only the checked in files will be verified. You can skip pre-commit by adding the
-    ```--no-verify``` flag  to a commit.  (```ie: git commit -m “Emergency” — no-verify```) Note: pre-commit requires
-    git.
+    tools to run before each commit. Note: pre-commit requires git.
     2. The pre-commit config file also has a linter, flake8, to analyze code for potential errors and standard Python
-    coding style practices.
-    3. Since black, trailing-whitespace, end-of-file-fixer, and debug-statements are in the .pre-commit-config file,
-    it will make file changes for you. If it makes changes, the status will say Failed, but if you run it again it'll
-    show Passed since the violations were corrected in the previous run.
-        1. Example successful run:
-```
-(ve) ^_^[USER:~/Desktop/sudoku]  (master)~/Desktop/sudoku
-$ pre-commit run --all-files
-seed isort known_third_party.............................................Passed
-black....................................................................Passed
-Flake8...................................................................Passed
-Trim Trailing Whitespace.................................................Passed
-Fix End of Files.........................................................Passed
-Debug Statements (Python)................................................Passed
-```
+    coding style practices. There are some hooks in .pre-commit-config file, that will make file changes for you. If it makes changes,
+    the status will say Failed, but if you run it again it'll show Passed since the violations were corrected in the
+    previous run.
 
+    Example unsuccessful run from command line on a local machine:
+    ```
+    $ pre-commit run --all-files
+    seed isort known_third_party.............................................Passed
+    black....................................................................Passed
+    Flake8...................................................................Passed
+    Trim Trailing Whitespace.................................................Failed
+    - hook id: trailing-whitespace
+    - exit code: 1
+    - files were modified by this hook
+
+    Fixing README.md
+
+    Fix End of Files.........................................................Passed
+    Debug Statements (Python)................................................Passed
+    Check docstring is first.................................................Passed
+    Fix requirements.txt.....................................................Passed
+    Check Yaml...............................................................Passed
+    autopep8.................................................................Passed
+    blacken-docs.............................................................Passed
+
+    ```
+
+    Example successful run from command line on your local machine:
+    The whitespace issues were fixed when running the initial pre-commit coommand and are therefore no longer showing
+    as failed in the second run of pre-commit:
+    ```
+    $ pre-commit run --all-files
+    seed isort known_third_party.............................................Passed
+    black....................................................................Passed
+    Flake8...................................................................Passed
+    Trim Trailing Whitespace.................................................Passed
+    Fix End of Files.........................................................Passed
+    Debug Statements (Python)................................................Passed
+    Check docstring is first.................................................Passed
+    Fix requirements.txt.....................................................Passed
+    Check Yaml...............................................................Passed
+    autopep8.................................................................Passed
+    blacken-docs.............................................................Passed
+    ```
 
 ## Release History
 
@@ -134,7 +181,6 @@ the status of the tests:
     2. then click the first event to see the newest run
     3. Then, in the left corner, click build to get details.
 
-    ![continuous integration](https://dan.yeaw.me/images/continuous-integration.svg)
     ![actions](docs/actions.png)
 
 
