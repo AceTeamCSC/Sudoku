@@ -31,20 +31,6 @@ Attributes:
 """
 
 
-# def foo(param1: str) -> str:
-#    """Return string with PEP 484 type annotations.
-
-#    Args:
-#    param1: The first parameter.
-
-#    Returns:
-#        The return value.
-
-#    """
-#    if 1 == 0:
-#        print("stuff")
-#    return param1
-
 import numpy as np
 import random
 
@@ -111,11 +97,15 @@ class Sudoku:
                 print("There are too many spaces in your response")
                 continue
 
-            response = response.split(" ")
 
-            row = response[0]
-            column = response[1]
-            value = response[2]
+            try:
+                response = response.split(" ")
+                row = response[0]
+                column = response[1]
+                value = response[2]
+            except IndexError:
+                print("Invalid response")
+                continue
 
             if not row.isdigit() or not column.isdigit() or not value.isdigit():
                 print("Please enter integers only")
@@ -139,40 +129,23 @@ class Sudoku:
         # generate sudoku puzzle solution
         board = np.zeros(9 * 9, dtype=np.int32).reshape([9, 9])
 
-        # 1. Fill all the diagonal 3x3 matrices.
-        # 2. Fill recursively rest of the non-diagonal matrices.
-        #    For every cell to be filled, we try all numbers until
-        #    we find a safe number to be placed.
-
-        # for i in range(0, 9):
-        #    matrix[i, :] = np.random.randint(1, 10, 9)
-        # return matrix
-
-        m = 3
-        n = m ** 2
-
-        def backtrack_search(c=0):
-            i, j = divmod(c, n)
-            i0, j0 = i - i % m, j - j % m  # Origin of mxm block
+        def backtrack_search(constraint=0):
+            i, j = divmod(constraint, 9)
+            i0, j0 = i - i % 3, j - j % 3  # Origin of block
             # Generate a random sample from 1-9 without replacement.
             numbers = np.random.choice(range(1, 10), 9, replace=False)
-            block = board[i0: i0 + m, j0: j0 + m]
+            block = board[i0: i0 + 3, j0: j0 + 3]
             for x in numbers:
                 if (
                     x not in board[i]  # row
                     and x not in board[:, j]  # column
-                    and x not in block
+                    and x not in block # subset
                 ):
                     board[i, j] = x
 
-                    # print(f'is valid? {Sudoku.check_valid_puzzle(board)}')
-                    print(c, n ** 2)
-                    print(board)
-                    # if {Sudoku.check_valid_puzzle(board)}:
-                    #    return board
+                    #print(board)
 
-                    if c + 1 >= n ** 2 or backtrack_search(c + 1) is not None:
-                        # print(f'inside return {c + 1}, {n ** 2}')
+                    if constraint + 1 >= 9 ** 2 or backtrack_search(constraint + 1) is not None:
                         return board
             else:
                 # No result found, need to backtrack
@@ -181,30 +154,6 @@ class Sudoku:
 
         return backtrack_search()
 
-        # m = 3
-        # n = m ** 2
-        # board = [[None for _ in range(n)] for _ in range(n)]
-
-        # def search(c=0):
-        #    "Recursively search for a solution starting at position c."
-        #    i, j = divmod(c, n)
-        #    i0, j0 = i - i % m, j - j % m  # Origin of mxm block
-        #    numbers = list(range(1, n + 1))
-        #    random.shuffle(numbers)
-        #    for x in numbers:
-        #        if (x not in board[i]  # row
-        #                and all(row[j] != x for row in board)  # column
-        #                and all(x not in row[j0:j0 + m]  # block
-        #                        for row in board[i0:i])):
-        #            board[i][j] = x
-        #            if c + 1 >= n ** 2 or search(c + 1):
-        #                return board
-        #    else:
-        #        # No number is valid in this cell: backtrack and try again.
-        #        board[i][j] = None
-        #        return None
-
-        # return search()
 
     @staticmethod
     def is_valid_array(arr):
@@ -212,8 +161,6 @@ class Sudoku:
 
     @staticmethod
     def check_valid_puzzle(board):
-        # print(Sudoku.is_valid_array(np.array([9,2,4,3,5,6,7,8,1])))
-        # print(Sudoku.is_valid_array(np.array([1,2,9,4,5,6,6,8,9])))
         for i in range(9):
             if not Sudoku.is_valid_array(board[i]):
                 print(f"not valid row {board[i]}")
@@ -223,7 +170,7 @@ class Sudoku:
             if not Sudoku.is_valid_array(board[:, i]):
                 print(f"not valid column {board[:,i]}")
                 return False
-        # FIXME block check
+
         coords = [
             (0, 0),
             (0, 3),
