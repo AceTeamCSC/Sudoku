@@ -1,14 +1,6 @@
 """Tests for sudoku.py."""
 
-from sudoku import sudoku
+from sudoku.sudoku import Sudoku
 
-
-def test_foo():
-    """Pytest tests are callables whose names start with "test".
-
-    Args:
-        None.
-
-    """
-    # More on pytest: https://github.com/pluralsight/intro-to-pytest  #noqa
-    assert sudoku.foo("hi") == "hi"
+def test_is_valid_array():
+    assert Sudoku.is_valid_array([1]) == False
