@@ -3,6 +3,10 @@ repos:
     rev: v1.9.4
     hooks:
     -   id: seed-isort-config
+-   repo: https://github.com/timothycrosley/isort
+    rev: 4.3.21  # pick the isort version you'd like to use from https://github.com/timothycrosley/isort/releases
+    hooks:
+    -   id: isort
 
 -   repo: https://github.com/ambv/black
     rev: 19.3b0
@@ -21,11 +25,6 @@ repos:
     - id: requirements-txt-fixer
     - id: check-yaml
       additional_dependencies: ['flake8-docstrings', 'darglint']
-
--   repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v1.4
-    hooks:
-    - id: autopep8
 
 -   repo: https://github.com/asottile/blacken-docs
     rev: v1.6.0
