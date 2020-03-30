@@ -120,7 +120,7 @@ for collaboration.
 2.  ```pre-commit run --all-files``` in the /sudoku directory
     1. pre-commit is a Python package that allows you to create a .pre-commit-config.yaml file that maintains a list of
     tools to run before each commit. Note: pre-commit requires git.
-    2. The pre-commit config file has a linter, flake8, and formtters, Black and isort, to analyze code for potential errors and standard Python
+    2. The pre-commit config file has a linter, flake8, and formatters, Black and isort, to analyze code for potential errors and standard Python
     coding style practices. There are some hooks in .pre-commit-config file, that will make file changes for you. If it makes changes,
     the status will say Failed, but if you run it again it'll show Passed since the violations were corrected in the
     previous run.
