@@ -60,7 +60,14 @@ for collaboration.
     “covered” by your tests. If the code coverage falls below 70%, the Github check will fail. Before doing a pull request, the
     coverage can be checked by running pytest ```pytest --verbose --cov-branch --cov-fail-under=50 --color=yes --cov=sudoku```
 
-     Example successful run from command line on your local machine:
+     Notes on the pytest output:
+     - Platform Darwin is a Mac thing. This will be different for other operating systems.
+     - The rootdir is the topmost directory to all the directories being searched for test code.
+     - The inifile is the configuration file. This project uses setup.cfg
+     - testpaths are the paths where pytest will look for paths. This project has all tests in the tests directory
+     - test_sudoku.py is the file being tested. Each test will be on its own line.
+
+     Example successful run from command line on your local machine.
     ```
        $ pytest --verbose --cov-branch --cov-fail-under=50 --color=yes --cov=sudoku
     ================================================================================ test session starts =================================================================================
@@ -113,7 +120,7 @@ for collaboration.
 2.  ```pre-commit run --all-files``` in the /sudoku directory
     1. pre-commit is a Python package that allows you to create a .pre-commit-config.yaml file that maintains a list of
     tools to run before each commit. Note: pre-commit requires git.
-    2. The pre-commit config file also has a linter, flake8, to analyze code for potential errors and standard Python
+    2. The pre-commit config file has a linter, flake8, and formatters, Black and isort, to analyze code for potential errors and standard Python
     coding style practices. There are some hooks in .pre-commit-config file, that will make file changes for you. If it makes changes,
     the status will say Failed, but if you run it again it'll show Passed since the violations were corrected in the
     previous run.
@@ -136,7 +143,6 @@ for collaboration.
     Check docstring is first.................................................Passed
     Fix requirements.txt.....................................................Passed
     Check Yaml...............................................................Passed
-    autopep8.................................................................Passed
     blacken-docs.............................................................Passed
 
     ```
@@ -155,7 +161,6 @@ for collaboration.
     Check docstring is first.................................................Passed
     Fix requirements.txt.....................................................Passed
     Check Yaml...............................................................Passed
-    autopep8.................................................................Passed
     blacken-docs.............................................................Passed
     ```
 
