@@ -2,7 +2,7 @@ import curses
 import time
 from sudoku import Sudoku
 
-menu = ['Rules', 'Play', 'Leaderboard', 'Exit']
+menu = ['Rules', 'Play', 'Exit']
 submenu = ['Easy', 'Hard', 'Exit']
 
 def intro_message():
@@ -99,7 +99,6 @@ def main(stdscr):
                 stdscr.getch()
             elif menu[current_row] == "Play":
                 sub_menu(stdscr)
-            #TODO: add leaderboard option with functionality
             elif menu[current_row] != "Exit":
                 print_center(stdscr, "'{}' selected".format(menu[current_row]))
                 stdscr.getch()
