@@ -12,7 +12,9 @@ class Sudoku:
         self._attempts_so_far = 0
         # FIXME
         # Lower this number when testing.
-        self.empty_numbers = 49 if difficulty == 'Easy' else 59 if difficulty == 'Hard' else 4
+        self.empty_numbers = (
+            49 if difficulty == "Easy" else 59 if difficulty == "Hard" else 4
+        )
         # _guess_padding is the number of guesses of a perfect game.
         self._guess_padding = 1
         # _max_attempts is the number of times a player can guess incorrectly.
@@ -64,7 +66,6 @@ class Sudoku:
         s = Sudoku(difficulty)
         user_exit = False
         s.remove_random()
-        #print(s.intro_message())
         s.display()
 
         while s.in_play:

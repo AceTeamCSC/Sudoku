@@ -1,9 +1,11 @@
 import curses
 import time
+
 from sudoku import Sudoku
 
-menu = ['Rules', 'Play', 'Exit']
-submenu = ['Easy', 'Hard', 'Exit']
+menu = ["Rules", "Play", "Exit"]
+submenu = ["Easy", "Hard", "Exit"]
+
 
 def intro_message():
     welcome_message = """
@@ -20,18 +22,20 @@ def intro_message():
     """
     return welcome_message
 
+
 def print_subject(stdscr, w, text):
-    text_x = w//2 - len(text)//2
+    text_x = w // 2 - len(text) // 2
     stdscr.addstr(5, text_x, text)
+
 
 def print_menu(stdscr, curr_row, curr_menu, text):
     stdscr.clear()
     h, w = stdscr.getmaxyx()
-    title_x = w//2 - len(text)//2
+    title_x = w // 2 - len(text) // 2
     stdscr.addstr(5, title_x, text)
     for idx, row in enumerate(curr_menu):
-        x = w//2 - len(row)//2
-        y = h//2 - len(menu)//2 + idx
+        x = w // 2 - len(row) // 2
+        y = h // 2 - len(menu) // 2 + idx
         if idx == curr_row:
             stdscr.attron(curses.color_pair(1))
             stdscr.addstr(y, x, row)
@@ -40,13 +44,15 @@ def print_menu(stdscr, curr_row, curr_menu, text):
             stdscr.addstr(y, x, row)
     stdscr.refresh()
 
+
 def print_center(stdscr, text):
     stdscr.clear()
     h, w = stdscr.getmaxyx()
-    x = w//2 - len(text)//2
-    y = h//2
+    x = w // 2 - len(text) // 2
+    y = h // 2
     stdscr.addstr(y, x, text)
     stdscr.refresh()
+
 
 def sub_menu(stdscr):
     submenu_row = 0
@@ -57,7 +63,7 @@ def sub_menu(stdscr):
 
         if sub_key == curses.KEY_UP and submenu_row > 0:
             submenu_row -= 1
-        elif sub_key == curses.KEY_DOWN and submenu_row < len(submenu)-1:
+        elif sub_key == curses.KEY_DOWN and submenu_row < len(submenu) - 1:
             submenu_row += 1
         if sub_key == sub_key in [10, 13]:
             if submenu[submenu_row] == "Easy":
@@ -72,12 +78,14 @@ def sub_menu(stdscr):
 
         print_menu(stdscr, submenu_row, submenu, "Pick a Difficulty")
 
+
 def start_game(difficulty):
     time.sleep(1)
     curses.nocbreak()
     curses.echo()
     curses.endwin()
     Sudoku.run(difficulty)
+
 
 def main(stdscr):
     curses.curs_set(0)
@@ -91,7 +99,7 @@ def main(stdscr):
 
         if key == curses.KEY_UP and current_row > 0:
             current_row -= 1
-        elif key == curses.KEY_DOWN and current_row < len(menu)-1:
+        elif key == curses.KEY_DOWN and current_row < len(menu) - 1:
             current_row += 1
         elif key == key in [10, 13]:
             if menu[current_row] == "Rules":
@@ -102,10 +110,11 @@ def main(stdscr):
             elif menu[current_row] != "Exit":
                 print_center(stdscr, "'{}' selected".format(menu[current_row]))
                 stdscr.getch()
-            if current_row == len(menu)-1:
+            if current_row == len(menu) - 1:
                 break
 
         print_menu(stdscr, current_row, menu, "Sudoku!")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     curses.wrapper(main)
