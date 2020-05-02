@@ -11,10 +11,8 @@ import numpy as np
 class Sudoku:
     def __init__(self, difficulty=None):
         self._attempts_so_far = 0
-        # FIXME
-        # Lower this number when testing.
         self.empty_numbers = (
-            49 if difficulty == "Easy" else 59 if difficulty == "Hard" else 4
+            29 if difficulty == "Easy" else 59 if difficulty == "Hard" else 4
         )
         # _guess_padding is the number of guesses of a perfect game.
         self._guess_padding = 1
@@ -51,9 +49,9 @@ class Sudoku:
         welcome_message = """
         Welcome to Sudoku
         Rules:
-        All rows should have the digits 1-9, without repition.
-        All columns should have the digits 1-9, without repition.
-        All 9 sub-matrices should have the digits 1-9, without repition.
+        All rows should have the digits 1-9, without repetition.
+        All columns should have the digits 1-9, without repetition.
+        All 9 sub-matrices should have the digits 1-9, without repetition.
         To play, enter the row, column, and answer at the command prompt. The
         Format is: <row> <column> <value>
         Type exit to leave
@@ -145,10 +143,6 @@ class Sudoku:
             self._masked_coordinates.add(tuple(coordinate))
 
     def display(self):
-        # FIXME
-        # Uncomment this for testing. Uncommenting this will make the display test fail
-        # print(self._matrix)
-
         for row in range(self._matrix.shape[0]):
             for column in range(self._matrix.shape[1]):
                 if column == 0:

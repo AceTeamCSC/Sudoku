@@ -189,9 +189,9 @@ def test_info_message(sudoku_board):
     welcome_message = """
         Welcome to Sudoku
         Rules:
-        All rows should have the digits 1-9, without repition.
-        All columns should have the digits 1-9, without repition.
-        All 9 sub-matrices should have the digits 1-9, without repition.
+        All rows should have the digits 1-9, without repetition.
+        All columns should have the digits 1-9, without repetition.
+        All 9 sub-matrices should have the digits 1-9, without repetition.
         To play, enter the row, column, and answer at the command prompt. The
         Format is: <row> <column> <value>
         Type exit to leave
