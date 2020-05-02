@@ -2,6 +2,7 @@
 """A game of Sudoku against the computer."""
 
 
+import os
 import random
 
 import numpy as np
@@ -75,7 +76,7 @@ class Sudoku:
             if response == "exit":
                 print("Goodbye")
                 user_exit = True
-                break
+                os._exit(0)
 
             if response.count(" ") > 2:
                 print("There are too many spaces in your response")
