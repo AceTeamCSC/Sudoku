@@ -205,4 +205,4 @@ def test_run():
     s = Sudoku()
 
     with mock.patch.object(builtins, "input", lambda _: "exit"):
-        assert s.run() is None
+        assert s.run() is exit()
