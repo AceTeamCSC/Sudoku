@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """A game of Sudoku against the computer."""
 
-
 import os
 import random
 
@@ -74,7 +73,7 @@ class Sudoku:
             if response == "exit":
                 print("Goodbye")
                 user_exit = True
-                os._exit(0)
+                break
 
             if response.count(" ") > 2:
                 print("There are too many spaces in your response")
@@ -103,6 +102,7 @@ class Sudoku:
         print("Game over!")
         if not s.attempts_exhausted and not user_exit:
             print("Winner!")
+        os._exit(0)
 
     @staticmethod
     def generate():
