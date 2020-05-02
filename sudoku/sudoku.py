@@ -8,11 +8,13 @@ import numpy as np
 
 
 class Sudoku:
-    def __init__(self):
+    def __init__(self, difficulty=None):
         self._attempts_so_far = 0
         # FIXME
         # Lower this number when testing.
-        self.empty_numbers = 4
+        self.empty_numbers = (
+            49 if difficulty == "Easy" else 59 if difficulty == "Hard" else 4
+        )
         # _guess_padding is the number of guesses of a perfect game.
         self._guess_padding = 1
         # _max_attempts is the number of times a player can guess incorrectly.
@@ -60,11 +62,10 @@ class Sudoku:
         return welcome_message
 
     @staticmethod
-    def run():
-        s = Sudoku()
+    def run(difficulty=None):
+        s = Sudoku(difficulty)
         user_exit = False
         s.remove_random()
-        print(s.intro_message())
         s.display()
 
         while s.in_play:
@@ -164,7 +165,3 @@ class Sudoku:
 
             if (row + 1) % 3 == 0 and row < self._matrix.shape[1] - 1:
                 print("  ----- + ----- + -----")
-
-
-if __name__ == "__main__":
-    Sudoku.run()
