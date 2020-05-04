@@ -10,6 +10,7 @@ import numpy as np
 class Sudoku:
     def __init__(self, difficulty=None):
         self._attempts_so_far = 0
+        # Requirements 2.1.0 and 2.2.0
         self.empty_numbers = (
             29 if difficulty == "Easy" else 59 if difficulty == "Hard" else 4
         )
@@ -105,6 +106,7 @@ class Sudoku:
         os._exit(0)
 
     @staticmethod
+    # Requirements 1.0.0., 1.1.0, 1.2.0
     def generate():
         # generate sudoku puzzle solution
         board = np.zeros(9 * 9, dtype=np.int32).reshape([9, 9])
