@@ -55,6 +55,7 @@ def print_center(stdscr, text):
 
 
 def sub_menu(stdscr):
+    # Requirement 2.0.0
     submenu_row = 0
     print_menu(stdscr, submenu_row, submenu, "Pick a Difficulty")
 
